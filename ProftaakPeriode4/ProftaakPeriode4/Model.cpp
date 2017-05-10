@@ -5,6 +5,8 @@
 #include <iostream>
 #include "MeshDrawComponent.h"
 #include "MeshFactory.h"
+#include "GUIComponent.h"
+#include "Text.h"
 
 Model::Model()
 {
@@ -60,6 +62,18 @@ void Model::InitTestObjects()
 	testObject->AddComponent(drawComponent);
 
 	_gameObjects.push_back(testObject);
+
+
+	unsigned int x = 10;
+	GameObject * guiOb = new GameObject();
+	GUIComponent * GUI = new GUIComponent();
+	Vec3f pos = Vec3f(10, 10, 02);
+	Vec3f col = Vec3f(1, 0, 0);
+	Text * fpstext = new Text(pos, col, "fps", &x);
+	GUI->AddElement(fpstext);
+	guiOb->AddComponent(GUI);
+
+	_gameObjects.push_back(guiOb);
 }
 
 void Model::Init()
